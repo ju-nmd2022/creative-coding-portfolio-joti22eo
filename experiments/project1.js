@@ -46,6 +46,11 @@ function draw() {
   rect(670, 230, w, h);
   pop();
 
+  // Second Half
+  push();
+  let b = random(255);
+  fill(255, 180, b);
+
   // Third row
   push();
   rectMode(CENTER);
@@ -103,6 +108,8 @@ function draw() {
   translate(770, 770);
   rotate(frameCount * 10);
   rect(0, 0, w, h);
+  pop();
+
   pop();
 
   pop();
