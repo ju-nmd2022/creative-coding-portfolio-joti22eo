@@ -10,6 +10,8 @@ function draw() {
   let w = 200;
   let h = 200;
 
+  push();
+
   // First Row
   push();
   rect(10, 10, w, h);
@@ -46,19 +48,31 @@ function draw() {
 
   // Third row
   push();
-  rect(10, 450, w, h);
+  rectMode(CENTER);
+  translate(110, 550);
+  rotate(-frameCount * 10);
+  rect(0, 0, w, h);
   pop();
 
   push();
-  rect(230, 450, w, h);
+  rectMode(CENTER);
+  translate(330, 550);
+  rotate(-frameCount * 10);
+  rect(0, 0, w, h);
   pop();
 
   push();
-  rect(450, 450, w, h);
+  rectMode(CENTER);
+  translate(550, 550);
+  rotate(-frameCount * 10);
+  rect(0, 0, w, h);
   pop();
 
   push();
-  rect(670, 450, w, h);
+  rectMode(CENTER);
+  translate(770, 550);
+  rotate(-frameCount * 10);
+  rect(0, 0, w, h);
   pop();
 
   // Fourth row
@@ -66,28 +80,30 @@ function draw() {
   // The following 2 lines of code is from ChatGPT
   rectMode(CENTER);
   translate(105, 770);
-  rotate(140);
+  rotate(frameCount * 10);
   rect(0, 0, w, h);
   pop();
 
   push();
   rectMode(CENTER);
   translate(330, 770);
-  rotate(145);
+  rotate(frameCount * 10);
   rect(0, 0, w, h);
   pop();
 
   push();
   rectMode(CENTER);
   translate(550, 770);
-  rotate(160);
+  rotate(frameCount * 10);
   rect(0, 0, w, h);
   pop();
 
   push();
   rectMode(CENTER);
   translate(770, 770);
-  rotate(170);
+  rotate(frameCount * 10);
   rect(0, 0, w, h);
+  pop();
+
   pop();
 }
