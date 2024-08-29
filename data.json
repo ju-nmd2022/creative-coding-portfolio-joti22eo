@@ -9,5 +9,11 @@
     "file": "experiments/project1.js",
     "name": "Project 1",
     "description": "This project was inspired by..."
+  },
+
+  {
+    "file": "experiments/project2.js",
+    "name": "Project 2",
+    "description": "This project was inspired by Vera Molnár"
   }
 ]
