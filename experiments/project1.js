@@ -82,7 +82,7 @@ function draw() {
 
   // Fourth row
   push();
-  // The following 2 lines of code is from ChatGPT
+  // The following 3 lines of code is from ChatGPT
   rectMode(CENTER);
   translate(105, 770);
   rotate(frameCount * 10);
