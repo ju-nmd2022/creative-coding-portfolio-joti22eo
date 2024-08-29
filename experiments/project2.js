@@ -14,8 +14,8 @@ function randomLines() {
 
 function draw() {
   background(250, 246, 235);
-  stroke(140, 140, 140);
-  strokeWeight(1);
+  stroke(0, 0, 255);
+  strokeWeight(16);
 
   for (let i = 0; i < 160; i++) {
     randomLines();
