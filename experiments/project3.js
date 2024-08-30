@@ -24,6 +24,7 @@ function draw() {
   background(250, 246, 235);
   noStroke();
 
+  // The following 4 lines of code are from ChatGPT
   // Ellipse Boundary
   // Center it
   const centerX = width / 2;
