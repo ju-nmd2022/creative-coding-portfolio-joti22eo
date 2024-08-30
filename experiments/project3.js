@@ -3,7 +3,7 @@ function setup() {
 }
 
 // The following 7 lines of code are from ChatGPT
-// Draws random ellipses within the ellipse boundary
+// Draws random rectangles within the ellipse boundary
 function drawRandomRect(centerX, centerY, width) {
   // Generate a random point inside the ellipse
   let angle = random(TWO_PI);
@@ -11,13 +11,13 @@ function drawRandomRect(centerX, centerY, width) {
   let x = centerX + radius * cos(angle);
   let y = centerY + radius * sin(angle);
 
-  // Random size and color for ellipses
-  let r = random(20, 60); // Radius (size)
-  let c = random(120, 220); // Color
+  // Random size and color for rectangles
+  let w = random(2, 12); // Radius (size)
+  let c = random(255); // Color
 
   // Draw the ellipses at the random point
-  fill(c, 255, c);
-  rect(x, y, r);
+  fill(255, 160, c);
+  rect(x, y, w);
 }
 
 function draw() {
@@ -30,11 +30,13 @@ function draw() {
   const centerX = width / 2;
   const centerY = height / 2;
   // Width & height
-  const ellipseRadius = 200;
+  const ellipseRadius = 300;
   // Number of rectangles
   const numRects = 260;
 
   for (let i = 0; i < numRects; i++) {
     drawRandomRect(centerX, centerY, ellipseRadius);
   }
+
+  noLoop();
 }
