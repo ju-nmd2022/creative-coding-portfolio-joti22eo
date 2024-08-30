@@ -16,7 +16,7 @@ function drawRandomRect(centerX, centerY, width) {
   let c = random(120, 220); // Color
 
   // Draw the ellipses at the random point
-  fill(c, c, 255);
+  fill(c, 255, c);
   rect(x, y, r);
 }
 
@@ -29,14 +29,11 @@ function draw() {
   const centerX = width / 2;
   const centerY = height / 2;
   // Width & height
-  const rectWidth = 600;
-  const rectHeight = 300;
-  // Number of ellipses
+  const ellipseRadius = 200;
+  // Number of rectangles
   const numRects = 260;
 
   for (let i = 0; i < numRects; i++) {
-    drawRandomRect(centerX, centerY, rectWidth, rectHeight);
+    drawRandomRect(centerX, centerY, ellipseRadius);
   }
-
-  noLoop();
 }
