@@ -1,25 +1,37 @@
 [
   {
-    "file": "experiments/example.js",
-    "name": "Name of your experiment",
-    "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
-  },
-
-  {
-    "file": "experiments/project1.js",
-    "name": "Project 1",
-    "description": "This project was an initial experiment/test"
-  },
-
-  {
     "file": "experiments/project2.js",
     "name": "Project 2",
-    "description": "This project was inspired by Vera Molnár"
+    "description": "This project was inspired by Vera Molnár. The idea was to recreate the artwork and then make different variations of it, which included changing colors and shapes."
+  },
+
+  {
+    "file": "experiments/project2-var2.js",
+    "name": "Project 2 variation",
+    "description": "This is a variation of project 2."
+  },
+
+  {
+    "file": "experiments/project2-var3.js",
+    "name": "Project 2 variation",
+    "description": "This is a variation of project 2."
   },
 
   {
     "file": "experiments/project3.js",
     "name": "Project 3",
-    "description": "This project was inspired by A. Michael Noll"
+    "description": "This project was inspired by A. Michael Noll and has been made with variation such as different color and shape."
+  },
+
+  {
+    "file": "experiments/project3-var2.js",
+    "name": "Project 3 variation",
+    "description": "This is a variation of project 2."
+  },
+
+  {
+    "file": "experiments/project3-var3.js",
+    "name": "Project 3 variation",
+    "description": "This is a variation of project 2."
   }
 ]

@@ -1,22 +1,25 @@
 function setup() {
   createCanvas(innerWidth, innerHeight);
 }
+
 function randomLines() {
   // The following 4 lines of code are from ChatGPT
   let x1 = random(width);
   let y1 = random(height);
-  let x2 = random(width);
-  let y2 = random(height);
-  line(x1, y1, x2, y2);
+  let r = random(20, 60);
+  let c = random(120, 220);
+
+  fill(255, c, c);
+  ellipse(x1, y1, r);
 }
 
 function draw() {
   background(250, 246, 235);
-  stroke(140, 140, 140);
-  strokeWeight(1);
+  noStroke();
 
   for (let i = 0; i < 160; i++) {
     randomLines();
   }
+
   noLoop();
 }
