@@ -33,5 +33,16 @@
     "file": "experiments/project3-var3.js",
     "name": "Project 3 - Pink and orange squares",
     "description": "This is a variation of project 2."
+  },
+
+  {
+    "file": "experiments/project4.js",
+    "name": "Vera Molnár - Animated lines",
+    "description": "This work was inspired by Vera Molnár. The lines have instead been animated, using moving lines being drawn and made from a particle system."
+  },
+  {
+    "file": "experiments/project4-var2.js",
+    "name": "Vera Molnár - Ice",
+    "description": "A variation of the animated lines where a particle system is used to draw random lines (particles) from an emitter that is randomly spawned on the canvas."
   }
 ]
