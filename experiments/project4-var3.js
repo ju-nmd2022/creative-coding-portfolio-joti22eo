@@ -2,7 +2,6 @@
 class Particle {
   constructor(x, y) {
     this.position = createVector(x, y);
-    // The following 7 lines of code are from ChatGPT
     this.previousPosition = this.position.copy(); // Store initial position
 
     // Random direction and speed
@@ -16,7 +15,6 @@ class Particle {
   }
 
   update() {
-    // The following 1 line of code is from ChatGPT
     this.previousPosition.set(this.position); // Save current position as previous
     this.lifespan -= 1;
 
@@ -33,8 +31,10 @@ class Particle {
       this.previousPosition.y,
       this.position.x,
       this.position.y
-    );
+    ); // Draw line from previous to current position
+    noStroke();
     fill(140, 140, 140);
+    ellipse(this.position.x, this.position.y, 2); // Draw particle
     pop();
   }
 
@@ -51,17 +51,14 @@ function setup() {
 }
 
 function draw() {
-  // The following 3 lines of code are from ChatGPT
   // Randomly generate particles
   if (random(1) < 0.05) {
-    // Frequency of particles appearing
     generateParticles(random(width), random(height));
   }
 
   for (let particle of particles) {
     particle.update();
     particle.draw();
-
     if (particle.isDead()) {
       particles.splice(particles.indexOf(particle), 1);
     }
