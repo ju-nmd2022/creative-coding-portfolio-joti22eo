@@ -45,5 +45,11 @@
     "file": "experiments/project4-var2.js",
     "name": "Vera Molnár - Ice",
     "description": "A variation of the animated lines where a particle system is used to draw random lines (particles) from an emitter that is randomly spawned on the canvas."
+  },
+
+  {
+    "file": "experiments/project4-var3.js",
+    "name": "Roots",
+    "description": "This project uses a particle system, perlin noise and flowfield to create 'roots' that randomly spawns and follows the flowfield across the canvas."
   }
 ]

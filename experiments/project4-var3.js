@@ -1,41 +1,82 @@
-// New Particle
+let cols, rows;
+let flowField;
+let size = 30; // Size of each vector in the flow field
+let particles = [];
+
+function setup() {
+  createCanvas(innerWidth, innerHeight);
+  // Following 3 lines of code are from ChatGPT
+  // Setting up the grid
+  cols = floor(width / size);
+  rows = floor(height / size);
+  flowField = new Array(cols * rows); // New array to store values for each cell
+  background(250, 246, 235);
+}
+
+function draw() {
+  // The following 7 lines of code are from ChatGPT
+  // Generate flow field based on Perlin noise
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      let index = x + y * cols;
+      let angle = noise(x * 0.1, y * 0.1) * TWO_PI; // Perlin noise
+      flowField[index] = p5.Vector.fromAngle(angle);
+    }
+  }
+
+  // The following 3 lines of code are from ChatGPT
+  // Randomly generate particles
+  if (random(1) < 0.05) {
+    generateParticles(random(width), random(height));
+  }
+
+  // Update and draw particles
+  for (let particle of particles) {
+    particle.follow(flowField);
+    particle.update();
+    particle.draw();
+
+    // Remove dead particles
+    if (particle.isDead()) {
+      particles.splice(particles.indexOf(particle), 1);
+    }
+  }
+}
+
 class Particle {
   constructor(x, y) {
     this.position = createVector(x, y);
-    this.previousPosition = this.position.copy(); // Store initial position
-
-    // Random direction and speed
-    const angle = Math.random() * Math.PI * 2;
-    const speed = 2 + Math.random(); // Random speed for some variation
-    this.velocity = createVector(
-      Math.cos(angle) * speed,
-      Math.sin(angle) * speed
-    );
-    this.lifespan = 200 + Math.random() * 200;
+    // The following 1 line of code is from ChatGPT
+    this.previousPosition = this.position.copy();
+    this.velocity = createVector(0, 0);
+    this.lifespan = 200 + random(200);
   }
 
+  // The following 6 lines of code are from ChatGPT
   update() {
-    this.previousPosition.set(this.position); // Save current position as previous
+    this.previousPosition.set(this.position);
+    this.velocity.limit(2); // Limit the speed
+    this.position.add(this.velocity);
     this.lifespan -= 1;
+  }
 
-    this.velocity.mult(0.99); // Apply friction
-    this.position.add(this.velocity); // Update position based on velocity
+  // The following 7 lines of code are from ChatGPT
+  follow(flowField) {
+    let x = floor(this.position.x / size);
+    let y = floor(this.position.y / size);
+    let index = x + y * cols;
+    let force = flowField[index];
+    this.velocity.add(force);
   }
 
   draw() {
-    push();
-    stroke(140, 140, 140);
-    strokeWeight(1);
+    stroke(140, 140, 140, this.lifespan);
     line(
       this.previousPosition.x,
       this.previousPosition.y,
       this.position.x,
       this.position.y
-    ); // Draw line from previous to current position
-    noStroke();
-    fill(140, 140, 140);
-    ellipse(this.position.x, this.position.y, 2); // Draw particle
-    pop();
+    );
   }
 
   isDead() {
@@ -43,34 +84,9 @@ class Particle {
   }
 }
 
-let particles = [];
-
-function setup() {
-  createCanvas(innerWidth, innerHeight);
-  background(250, 246, 235);
-}
-
-function draw() {
-  // Randomly generate particles
-  if (random(1) < 0.05) {
-    generateParticles(random(width), random(height));
-  }
-
-  for (let particle of particles) {
-    particle.update();
-    particle.draw();
-    if (particle.isDead()) {
-      particles.splice(particles.indexOf(particle), 1);
-    }
-  }
-}
-
 function generateParticles(x, y) {
   for (let i = 0; i < 6; i++) {
-    // Generate 10 particles each time
-    const particleX = x + random(-10, 10);
-    const particleY = y + random(-10, 10);
-    const particle = new Particle(particleX, particleY);
+    let particle = new Particle(x, y);
     particles.push(particle);
   }
 }
