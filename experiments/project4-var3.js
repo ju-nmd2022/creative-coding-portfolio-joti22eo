@@ -26,7 +26,7 @@ function draw() {
 
   // The following 3 lines of code are from ChatGPT
   // Randomly generate particles
-  if (random(1) < 0.05) {
+  if (random(1) < 0.1) {
     generateParticles(random(width), random(height));
   }
 
@@ -85,7 +85,7 @@ class Particle {
 }
 
 function generateParticles(x, y) {
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 4; i++) {
     let particle = new Particle(x, y);
     particles.push(particle);
   }
