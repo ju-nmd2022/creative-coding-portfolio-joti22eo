@@ -85,7 +85,7 @@ class Particle {
 }
 
 function generateParticles(x, y) {
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 8; i++) {
     let particle = new Particle(x, y);
     particles.push(particle);
   }
