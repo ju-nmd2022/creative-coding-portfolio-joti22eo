@@ -40,7 +40,7 @@ class Particle {
 }
 
 function draw() {
-  background(255);
+  background(10, 140, 255, 150);
 
   // The following 1 line of code is from ChatGPT
   // Update wave offset
