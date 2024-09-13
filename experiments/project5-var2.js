@@ -20,7 +20,7 @@ class Particle {
   constructor(x, y) {
     this.position = createVector(x, y);
     this.initialY = y; // Store the initial y position
-    this.radius = 60;
+    this.radius = 80;
   }
 
   update() {

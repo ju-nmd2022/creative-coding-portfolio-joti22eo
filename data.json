@@ -51,5 +51,17 @@
     "file": "experiments/project4-var3.js",
     "name": "Roots",
     "description": "This project uses a particle system, perlin noise and flowfield to create 'roots' that randomly spawns and follows the flowfield across the canvas."
+  },
+
+  {
+    "file": "experiments/project5.js",
+    "name": "Minions",
+    "description": "A simple complex system where autonoumous agents, dressed as minions, run around and bounce off the walls."
+  },
+
+  {
+    "file": "experiments/project5-var2.js",
+    "name": "Wave Effect",
+    "description": "An artwork that combines a wave and lavalamp effect with blue dots. It was used with a particle system where particles follow a wave-motion. The intention was to create a harmonious feeling."
   }
 ]
