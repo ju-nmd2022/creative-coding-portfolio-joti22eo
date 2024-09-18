@@ -22,15 +22,18 @@ function setup() {
   createCanvas(innerWidth, innerHeight);
 
   for (let i = 0; i < 500; i++) {
-    particles.push(new Particle(random(width), random(height)));
+    particles.push(
+      new Particle(random(width), random(height), color(0, 100, 255, 150))
+    );
   }
 }
 
 class Particle {
-  constructor(x, y) {
+  constructor(x, y, col) {
     this.position = createVector(x, y);
     this.initialY = y; // Store the initial y position
     this.radius = 80;
+    this.color = col; // Particle color
   }
 
   update() {
@@ -42,7 +45,7 @@ class Particle {
 
   draw() {
     push();
-    fill(0, 100, 255, 150);
+    fill(this.color);
     noStroke();
     ellipse(this.position.x, this.position.y, this.radius);
     pop();
@@ -64,7 +67,11 @@ function draw() {
 }
 
 function mousePressed() {
-  particles.push(new Particle(mouseX, mouseY));
+  // Random color for the new particles on click
+  let c = random(255);
+  let newColor = color(c, c, 255, 160);
+
+  particles.push(new Particle(mouseX, mouseY, newColor));
 
   synth.triggerAttackRelease("C4", "4n");
 }
