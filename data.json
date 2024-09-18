@@ -63,5 +63,11 @@
     "file": "experiments/project5-var2.js",
     "name": "Wave Effect",
     "description": "An artwork that combines a wave and lavalamp effect with blue dots. It was used with a particle system where particles follow a wave-motion. The intention was to create a harmonious feeling."
+  },
+
+  {
+    "file": "experiments/week4.js",
+    "name": "Sound",
+    "description": "."
   }
 ]
