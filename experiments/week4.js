@@ -28,14 +28,14 @@ class Particle {
       Math.cos(angle) * speed,
       Math.sin(angle) * speed
     );
-    this.lifespan = 200 + Math.random() * 100;
+    this.lifespan = 0;
     this.color = color(255, 0, 0);
   }
 
   update() {
     // The following 1 line of code is from ChatGPT
     this.previousPosition.set(this.position); // Save current position as previous
-    this.lifespan -= 1;
+    this.lifespan += 2;
 
     // The following 4 lines of code is from ChatGPT
     const t = map(this.lifespan, 0, 400, 0, 1);
@@ -53,7 +53,7 @@ class Particle {
       this.previousPosition.x,
       this.previousPosition.y,
       this.position.x,
-      this.position.y
+      this.position.y - this.lifespan
     );
     pop();
   }
