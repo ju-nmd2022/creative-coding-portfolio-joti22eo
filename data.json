@@ -67,7 +67,7 @@
 
   {
     "file": "experiments/week4.js",
-    "name": "Sound",
-    "description": "."
+    "name": "Starry Night",
+    "description": "A variation of the Vera Molnár variation I made previously, instead with increased particles that expand continously and has a color change from yellow to white to represent stars. The stars appear to the notes of the 'Twinkle, twinkle little star' melody."
   }
 ]

@@ -72,17 +72,17 @@ class Particle {
       Math.sin(angle) * speed
     );
     this.lifespan = 0;
-    this.color = color(31, 6, 6);
+    this.color = color(255);
   }
 
   update() {
     // The following 1 line of code is from ChatGPT
     this.previousPosition.set(this.position); // Save current position as previous
-    this.lifespan += 2;
+    this.lifespan += 1;
 
     // The following 4 lines of code is from ChatGPT
-    const t = map(this.lifespan, 0, 400, 0, 1);
-    this.color = lerpColor(color(255), color(31, 6, 6), t);
+    const t = map(this.lifespan, 0, 80, 0, 1);
+    this.color = lerpColor(color(250, 245, 90), color(255), t);
 
     this.velocity.mult(0.99); // Apply friction
     this.position.add(this.velocity); // Update position based on velocity
@@ -96,7 +96,7 @@ class Particle {
       this.previousPosition.x,
       this.previousPosition.y,
       this.position.x,
-      this.position.y - this.lifespan
+      this.position.y
     );
     pop();
   }
@@ -107,21 +107,16 @@ class Particle {
 }
 
 let particles = [];
+let noteIndex = 0;
 
 function setup() {
   createCanvas(innerWidth, innerHeight);
   background(0);
   Tone.start(); // Start Tone.js context
+  playMelody();
 }
 
 function draw() {
-  // The following 3 lines of code are from ChatGPT
-  // Randomly generate particles
-  if (random(1) < 0.06) {
-    // Frequency of particles appearing
-    generateParticles(random(width), random(height));
-  }
-
   for (let particle of particles) {
     particle.update();
     particle.draw();
@@ -139,8 +134,16 @@ function generateParticles(x, y) {
     const particle = new Particle(particleX, particleY);
     particles.push(particle);
   }
+}
 
-  // Play a random sound when particles are generated
-  let randomNote = random(twinkleStarMelody);
-  synth.triggerAttackRelease(randomNote, "8t");
+// The following 10 lines of code are from ChatGPT
+function playMelody() {
+  const noteDuration = 600; // Duration for each note in milliseconds
+
+  twinkleStarMelody.forEach((note, index) => {
+    setTimeout(() => {
+      generateParticles(random(width), random(height)); // Generate particles
+      synth.triggerAttackRelease(note, "8t"); // Play the note
+    }, index * noteDuration); // Schedule the note
+  });
 }
