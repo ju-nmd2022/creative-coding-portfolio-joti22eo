@@ -1,6 +1,5 @@
-// Following 11 lines of code are from ChatGPT
 // Initialize Tone.Synth
-const synth = new Tone.Synth({
+const synth = new Tone.PolySynth({
   oscillator: {
     type: "sine",
   },
@@ -8,70 +7,97 @@ const synth = new Tone.Synth({
     attack: 0.4,
     decay: 0.2,
     sustain: 0.0,
-    release: 0.2,
+    release: 1,
   },
 }).toDestination();
 
-// Particle system
-let particles = [];
-let size = 10;
-let waveSpeed = 0.1; // Speed of the wave motion
-let waveOffset = 0; // Offset to animate the waves
+// Sound Notes
+const notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
 
-function setup() {
-  createCanvas(innerWidth, innerHeight);
-
-  for (let i = 0; i < 500; i++) {
-    particles.push(
-      new Particle(random(width), random(height), color(0, 100, 255, 150))
-    );
-  }
-}
-
+// New Particle
 class Particle {
-  constructor(x, y, col) {
+  constructor(x, y) {
     this.position = createVector(x, y);
-    this.initialY = y; // Store the initial y position
-    this.radius = 80;
-    this.color = col; // Particle color
+    // The following 7 lines of code are from ChatGPT
+    this.previousPosition = this.position.copy(); // Store initial position
+
+    // Random direction and speed
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 5 + Math.random() * 5; // Random speed for some variation
+    this.velocity = createVector(
+      Math.cos(angle) * speed,
+      Math.sin(angle) * speed
+    );
+    this.lifespan = 200 + Math.random() * 100;
+    this.color = color(255, 0, 0);
   }
 
   update() {
-    // The following 2 lines of code are from ChatGPT
-    // Calculate wave movement
-    let yOffset = sin((this.position.x + waveOffset) * 0.02) * 50;
-    this.position.y = this.initialY + yOffset;
+    // The following 1 line of code is from ChatGPT
+    this.previousPosition.set(this.position); // Save current position as previous
+    this.lifespan -= 1;
+
+    // The following 4 lines of code is from ChatGPT
+    const t = map(this.lifespan, 0, 400, 0, 1);
+    this.color = lerpColor(color(255), color(255, 0, 0), t);
+
+    this.velocity.mult(0.99); // Apply friction
+    this.position.add(this.velocity); // Update position based on velocity
   }
 
   draw() {
     push();
-    fill(this.color);
-    noStroke();
-    ellipse(this.position.x, this.position.y, this.radius);
+    stroke(this.color);
+    strokeWeight(1);
+    line(
+      this.previousPosition.x,
+      this.previousPosition.y,
+      this.position.x,
+      this.position.y
+    );
     pop();
   }
+
+  isDead() {
+    return this.lifespan <= 0;
+  }
+}
+
+let particles = [];
+
+function setup() {
+  createCanvas(innerWidth, innerHeight);
+  background(0);
+  Tone.start(); // Start Tone.js context
 }
 
 function draw() {
-  background(10, 140, 255, 150);
+  // The following 3 lines of code are from ChatGPT
+  // Randomly generate particles
+  if (random(1) < 0.02) {
+    // Frequency of particles appearing
+    generateParticles(random(width), random(height));
+  }
 
-  // The following 1 line of code is from ChatGPT
-  // Update wave offset
-  waveOffset += waveSpeed;
-
-  // Update and draw particles
   for (let particle of particles) {
     particle.update();
     particle.draw();
+
+    if (particle.isDead()) {
+      particles.splice(particles.indexOf(particle), 1);
+    }
   }
 }
 
-function mousePressed() {
-  // Random color for the new particles on click
-  let c = random(255);
-  let newColor = color(c, c, 255, 160);
+function generateParticles(x, y) {
+  for (let i = 0; i < 140; i++) {
+    const particleX = x + random(-10, 10);
+    const particleY = y + random(-10, 10);
+    const particle = new Particle(particleX, particleY);
+    particles.push(particle);
+  }
 
-  particles.push(new Particle(mouseX, mouseY, newColor));
-
-  synth.triggerAttackRelease("C4", "4n");
+  // Play a random sound when particles are generated
+  let randomNote = random(notes);
+  synth.triggerAttackRelease(randomNote, "8t");
 }
