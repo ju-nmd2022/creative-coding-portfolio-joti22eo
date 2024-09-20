@@ -12,7 +12,50 @@ const synth = new Tone.PolySynth({
 }).toDestination();
 
 // Sound Notes
-const notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
+const twinkleStarMelody = [
+  "C4",
+  "C4",
+  "G4",
+  "G4",
+  "A4",
+  "A4",
+  "G4",
+  "F4",
+  "F4",
+  "E4",
+  "E4",
+  "D4",
+  "D4",
+  "C4",
+  "G4",
+  "G4",
+  "F4",
+  "F4",
+  "E4",
+  "E4",
+  "D4",
+  "G4",
+  "G4",
+  "F4",
+  "F4",
+  "E4",
+  "E4",
+  "D4",
+  "C4",
+  "C4",
+  "G4",
+  "G4",
+  "A4",
+  "A4",
+  "G4",
+  "F4",
+  "F4",
+  "E4",
+  "E4",
+  "D4",
+  "D4",
+  "C4",
+];
 
 // New Particle
 class Particle {
@@ -29,7 +72,7 @@ class Particle {
       Math.sin(angle) * speed
     );
     this.lifespan = 0;
-    this.color = color(255, 0, 0);
+    this.color = color(31, 6, 6);
   }
 
   update() {
@@ -39,7 +82,7 @@ class Particle {
 
     // The following 4 lines of code is from ChatGPT
     const t = map(this.lifespan, 0, 400, 0, 1);
-    this.color = lerpColor(color(255), color(255, 0, 0), t);
+    this.color = lerpColor(color(255), color(31, 6, 6), t);
 
     this.velocity.mult(0.99); // Apply friction
     this.position.add(this.velocity); // Update position based on velocity
@@ -74,7 +117,7 @@ function setup() {
 function draw() {
   // The following 3 lines of code are from ChatGPT
   // Randomly generate particles
-  if (random(1) < 0.02) {
+  if (random(1) < 0.06) {
     // Frequency of particles appearing
     generateParticles(random(width), random(height));
   }
@@ -98,6 +141,6 @@ function generateParticles(x, y) {
   }
 
   // Play a random sound when particles are generated
-  let randomNote = random(notes);
+  let randomNote = random(twinkleStarMelody);
   synth.triggerAttackRelease(randomNote, "8t");
 }
